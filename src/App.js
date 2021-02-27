@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import Timebox from './components/Timebox/Timebox'
+import TimeboxEditor from './components/TimeboxEditor/TimeboxEditor'
+import './App.scss';
 
 class App extends Component {
   state = {  }
   render() { 
     return ( 
-      <div>Git!</div>
+      <div className="app">
+        <TimeboxEditor />
+        <Timebox />
+      </div>
      );
   }
 }
