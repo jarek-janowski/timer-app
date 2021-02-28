@@ -1,7 +1,7 @@
-const Clock = () => {
+const Clock = ({minutes, seconds}) => {
     return ( 
-        <p>Pozostało: 20min</p>
+        <p>Pozostało: {minutes}:{seconds}min</p>
      );
 }
- 
-export default Clock;
+
+ export default Clock;

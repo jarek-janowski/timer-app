@@ -1,7 +1,7 @@
-const ProgressBar = () => {
+const ProgressBar = ({percent}) => {
     return ( 
         <div className="progress-bar">
-            <div style={{width: '45%'}}></div>
+            <div style={{width: `${percent}%`}}></div>
         </div>
      );
 }
