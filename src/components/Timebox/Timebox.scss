@@ -1,7 +1,11 @@
 .progress-bar{
     height: 20px;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 5px;
     & >div{
         height: 100%;
         background-color: black;
+
     }
 }
