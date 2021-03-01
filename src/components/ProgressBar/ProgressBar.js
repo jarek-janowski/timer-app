@@ -2,22 +2,20 @@ import './ProgressBar.scss'
 import styled, { css } from 'styled-components'
 
 const Div = styled.div`
-    ${props =>
-        props.redBackground &&
+        ${props =>
+            props.blink &&
         css`
-            background: #EF233C;
-        `};
-    ${props =>
-        props.redBorder &&
-        css`
-            border-color: #EF233C;
+            animation: blink 2s linear infinite;
+            @keyframes blink {  
+                50% { opacity: 0.6; }
+            }
         `};
 `
 
 const ProgressBar = ({percent, paused}) => {
     return ( 
-        <Div redBorder={paused} className="progress-bar">
-            <Div redBackground={paused} className="progress-bar__inside" style={{width: `${percent}%`}}></Div>
+        <Div blink={paused} className="progress-bar">
+            <div className="progress-bar__inside" style={{width: `${percent}%`}}></div>
         </Div>
      );
 }

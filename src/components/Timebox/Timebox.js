@@ -7,15 +7,15 @@ const Button = styled.button`
         ${props =>
             props.red &&
             css`
-              background: #EF233C;
+                background: #EF233C;
             `};
         ${props =>
-            props.lightpurple && 
+            props.lightpurple &&
             css`
-            background: #7d889b;
+                background: #7d889b;
             `};
-        
-        `  
+            `
+
 
 const Timebox = ({
     isRunning, 
@@ -32,26 +32,28 @@ const Timebox = ({
         return ( 
             <section className="timebox">
                 <h2 className="timebox__heading">{title}</h2>
-                <Clock minutes={minutesLeft} seconds={secondsLeft}/>
+                <Clock blur={!isPaused} paused={isPaused} minutes={minutesLeft} seconds={secondsLeft}/>
                 <ProgressBar paused={isPaused} percent={progressInPercent} />
                 <div className="timebox__button-wrapper">
-                    <Button className="timebox__button "
+                    {/* <Button className="timebox__button "
                         onClick={start} 
                         disabled = {isRunning}
                         lightpurple={isRunning}
-                    >Start</Button>
+                    >Start</Button> */}
                     <Button 
                         className="timebox__button" 
                         onClick={stop} 
                         disabled={!isRunning}
                         lightpurple={!isRunning}
-                    >Stop</Button>
+                    >Resetuj</Button>
                     <Button 
                         className="timebox__button" 
                         onClick={pause} 
-                        disabled={!isRunning}
+                        disabled={!isRunning || secondsLeft === 0}
                         lightpurple={!isRunning}
-                        red={isPaused}>
+                        red={isPaused}
+                        lightpurple={secondsLeft === 0}
+                        >
                     {isPaused ? "Wznów" : "Pauza"}
                     </Button>
                 </div>

@@ -12,6 +12,12 @@ class EditableTimebox extends Component {
         pausesCount: 0,
         elapsedTimeInSeconds: 0,
      }
+
+    componentDidUpdate(){
+        if(this.state.elapsedTimeInSeconds >= (this.state.totalTimeInMinutes*60) && this.state.elapsedTimeInSeconds>0) {
+            this.stopTimer();
+        }
+    }
   
     handleTitleChange = e =>{
       this.setState({
@@ -78,21 +84,21 @@ class EditableTimebox extends Component {
     render() { 
         const {isRunning, isPaused, pausesCount, elapsedTimeInSeconds, title, totalTimeInMinutes} = this.state;
         const totalTimeInSeconds = totalTimeInMinutes * 60;
-        const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
+        const timeLeftInSeconds = totalTimeInSeconds - Math.floor(elapsedTimeInSeconds);
         const minutesLeft = Math.floor(timeLeftInSeconds/60);
         const secondsLeft = Math.floor(timeLeftInSeconds%60);
-        const progressInPercent = (elapsedTimeInSeconds / totalTimeInSeconds) * 100.0;
+        const progressInPercent = ((elapsedTimeInSeconds) / totalTimeInSeconds) * 100.0;
         return ( 
             <>
-                <TimeboxEditor 
+                {isRunning ? null : <TimeboxEditor 
                     title={title}
                     totalTimeInMinutes={totalTimeInMinutes}
                     titleChange={this.handleTitleChange}
                     totalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
                     startOnClick={this.handleStart}
                     isRunning={isRunning}
-                />
-                <Timebox 
+                />}
+                {!isRunning ? null : <Timebox 
                     isRunning={isRunning}
                     isPaused={isPaused}
                     pausesCount={pausesCount}
@@ -106,7 +112,7 @@ class EditableTimebox extends Component {
                     stop = {this.handleStop}
                     pause = {this.handleTogglePause}
                     
-                />
+                />}
             </>
          );
     }

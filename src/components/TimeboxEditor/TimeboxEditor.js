@@ -1,14 +1,5 @@
 import './TimeboxEditor.scss'
-import styled, { css } from 'styled-components'
 
-const Button = styled.button`
-        ${props =>
-            props.lightpurple && 
-            css`
-            background: #7d889b;
-            `};
-        
-        `  
 const TimeboxEditor = ({
     title, 
     totalTimeInMinutes, 
@@ -39,13 +30,12 @@ const TimeboxEditor = ({
                     onChange={totalTimeInMinutesChange}
                     />
             </label>
-            <Button 
+            <button 
                 onClick={startOnClick} 
                 className="timebox-editor__button"
                 disabled={isRunning}
-                lightpurple={isRunning}
                 >Zacznij
-            </Button>
+            </button>
         </section>
      );
 }
