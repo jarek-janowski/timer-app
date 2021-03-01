@@ -25,7 +25,6 @@ const Timebox = ({
     minutesLeft,
     secondsLeft,
     progressInPercent,
-    start,
     stop,
     pause,
     }) => {
@@ -33,13 +32,8 @@ const Timebox = ({
             <section className="timebox">
                 <h2 className="timebox__heading">{title}</h2>
                 <Clock blur={!isPaused} paused={isPaused} minutes={minutesLeft} seconds={secondsLeft}/>
-                <ProgressBar paused={isPaused} percent={progressInPercent} />
+                <ProgressBar minutesLeft={minutesLeft} secondsLeft={secondsLeft} paused={isPaused} percent={progressInPercent} />
                 <div className="timebox__button-wrapper">
-                    {/* <Button className="timebox__button "
-                        onClick={start} 
-                        disabled = {isRunning}
-                        lightpurple={isRunning}
-                    >Start</Button> */}
                     <Button 
                         className="timebox__button" 
                         onClick={stop} 
@@ -50,9 +44,8 @@ const Timebox = ({
                         className="timebox__button" 
                         onClick={pause} 
                         disabled={!isRunning || secondsLeft === 0}
-                        lightpurple={!isRunning}
+                        lightpurple={!isRunning || (secondsLeft === 0 && minutesLeft === 0)}
                         red={isPaused}
-                        lightpurple={secondsLeft === 0}
                         >
                     {isPaused ? "Wznów" : "Pauza"}
                     </Button>

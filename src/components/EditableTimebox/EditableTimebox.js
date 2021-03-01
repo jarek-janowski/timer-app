@@ -11,6 +11,8 @@ class EditableTimebox extends Component {
         isPaused: false,
         pausesCount: 0,
         elapsedTimeInSeconds: 0,
+        validTitle: false,
+        validMinutes: false,
      }
 
     componentDidUpdate(){
@@ -31,20 +33,39 @@ class EditableTimebox extends Component {
     }
 
     handleStart = () =>{
-        this.setState({
+        if (this.state.title.length < 1 && this.state.totalTimeInMinutes.length < 1){
+            alert('Uzupełnij pola')
+            this.setState({
+                validTitle: true,
+                validMinutes: true
+            })
+        }else if(this.state.title.length > 1 && this.state.totalTimeInMinutes.length < 1){
+            alert('Uzupełnij pole z minutami')
+            this.setState({
+                validTitle: false,
+                validMinutes: true
+            })}else if(this.state.title.length < 1 && this.state.totalTimeInMinutes.length > 1){
+                alert('Uzupełnij pole z celem')
+            this.setState({
+                validTitle: true,
+                validMinutes: false
+            })}else{
+            this.setState({
             isRunning: true,
-            // title: "",
-            // totalTimeInMinutes: null,
         })
-        this.startTimer();
+        this.startTimer();}
     }
 
     handleStop = () =>{
         this.setState({
+            title: "",
+            totalTimeInMinutes: "",
             isRunning: false,
             isPaused: false,
             pausesCount: 0,
-            elapsedTimeInSeconds: 0
+            elapsedTimeInSeconds: 0,
+            validTitle: false,
+            validMinutes: false,
         })
         this.stopTimer();
     }
@@ -82,7 +103,7 @@ class EditableTimebox extends Component {
     }
 
     render() { 
-        const {isRunning, isPaused, pausesCount, elapsedTimeInSeconds, title, totalTimeInMinutes} = this.state;
+        const {isRunning, isPaused, pausesCount, elapsedTimeInSeconds, title, totalTimeInMinutes, validTitle, validMinutes} = this.state;
         const totalTimeInSeconds = totalTimeInMinutes * 60;
         const timeLeftInSeconds = totalTimeInSeconds - Math.floor(elapsedTimeInSeconds);
         const minutesLeft = Math.floor(timeLeftInSeconds/60);
@@ -97,6 +118,8 @@ class EditableTimebox extends Component {
                     totalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
                     startOnClick={this.handleStart}
                     isRunning={isRunning}
+                    validationTitle={validTitle}
+                    validationMinutes={validMinutes}
                 />}
                 {!isRunning ? null : <Timebox 
                     isRunning={isRunning}
@@ -108,7 +131,6 @@ class EditableTimebox extends Component {
                     minutesLeft ={minutesLeft}
                     secondsLeft = {secondsLeft}
                     progressInPercent ={progressInPercent}
-                    start = {this.handleStart}
                     stop = {this.handleStop}
                     pause = {this.handleTogglePause}
                     
