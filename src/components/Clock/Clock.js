@@ -1,6 +1,8 @@
+import './Clock.scss'
+
 const Clock = ({minutes, seconds}) => {
     return ( 
-        <p>Pozostało: {minutes}:{seconds}min</p>
+        <p className="clock">Pozostało: {minutes}:{seconds}min</p>
      );
 }
 

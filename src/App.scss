@@ -1,4 +1,15 @@
+@import './variables.scss';
+
 .app {
-  max-width: 90%;
-  margin: 0 auto;
+  width: 90vw;
+  min-height: 90%;
+  background: $lightpurple;
+  border-radius: 8px;
+  // padding: 16px
+}
+
+h1{
+  color: $darkpurple;
+  text-align: center;
+  padding-top: 16px;
 }

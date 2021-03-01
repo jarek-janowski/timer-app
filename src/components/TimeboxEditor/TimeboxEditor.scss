@@ -1,0 +1,35 @@
+@import '../../variables.scss';
+
+.timebox-editor{
+    display: flex;
+    // display: flex;
+    flex-direction: column;
+    align-items: center;
+    // flex-wrap: wrap;
+    padding: 16px 8px 0;
+    &__input{
+        display: block;
+        margin-top: 8px;
+        border-radius: 5px;
+        border: 1px solid $darkpurple;
+        // border: none;
+        background: $white;
+        color: $darkpurple;
+        padding: 6px;
+    }
+    &__title{
+        display: block;
+        color: $darkpurple;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    &__button{
+        display: block;
+        background: $darkpurple;
+        border: 1px solid $white;
+        border-radius: 5px;
+        color: $white;
+        padding: 6px 16px;
+    }
+}

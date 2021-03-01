@@ -67,13 +67,15 @@ class Timebox extends Component {
         const progressInPercent = (elapsedTimeInSeconds / totalTimeInSeconds) * 100.0;
         return ( 
             <section className="timebox">
-                <h1>Co robię</h1>
+                <h2 className="timebox__heading">Co robię</h2>
                 <Clock minutes={minutesLeft} seconds={secondsLeft}/>
                 <ProgressBar percent={progressInPercent} />
-                <button onClick={this.handleStart} disabled = {isRunning}>Start</button>
-                <button onClick={this.handleStop} disabled={!isRunning}>Stop</button>
-                <button onClick={this.handleTogglePause} disabled={!isRunning}>{isPaused ? "Wznów" : "Pauza"}</button>
-                <span>Liczba przerw: {pausesCount}</span>
+                <div className="timebox__button-wrapper">
+                    <button className="timebox__button" onClick={this.handleStart} disabled = {isRunning}>Start</button>
+                    <button className="timebox__button" onClick={this.handleStop} disabled={!isRunning}>Stop</button>
+                    <button className="timebox__button" onClick={this.handleTogglePause} disabled={!isRunning}>{isPaused ? "Wznów" : "Pauza"}</button>
+                </div>
+                <span className="timebox__pauses">Liczba przerw: <span>{pausesCount}</span></span>
             </section>
          );
     }

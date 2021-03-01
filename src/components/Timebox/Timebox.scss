@@ -1,11 +1,31 @@
-.progress-bar{
-    height: 20px;
-    border: 1px solid black;
-    padding: 3px;
-    border-radius: 5px;
-    & >div{
-        height: 100%;
-        background-color: black;
+@import '../../variables.scss';
 
+.timebox{
+    padding: 8px;
+    &__heading{
+        color: $darkpurple;
+        text-align: center;
+    }
+    &__button {
+        background: $darkpurple;
+        border: none;
+        border-radius: 5px;
+        color: $white;
+        padding: 6px 16px;
+        border: 1px solid $white;
+    }
+    &__button-wrapper{
+        margin: 16px 0 24px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    &__pauses {
+        display: block;
+        text-align: center;
+        color: $white;
+        & > span {
+            color: $red2;
+            font-weight: 700;
+        }
     }
 }

@@ -8,6 +8,7 @@ class App extends Component {
   render() { 
     return ( 
       <div className="app">
+        <h1>timer-app</h1>
         <TimeboxEditor />
         <Timebox />
       </div>
