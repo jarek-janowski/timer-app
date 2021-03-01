@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './Timebox.scss'
 import ProgressBar from '../ProgressBar/ProgressBar'
 import Clock from '../Clock/Clock'
+import styled, { css } from 'styled-components'
+
+
 
 class Timebox extends Component {
     state = { 
@@ -59,21 +62,51 @@ class Timebox extends Component {
     }
 
     render() { 
+        const Button = styled.button`
+        ${props =>
+            props.red &&
+            css`
+              background: #EF233C;
+            `};
+        ${props =>
+            props.lightpurple && 
+            css`
+            background: #7d889b;
+            `};
+        
+        `   
         const {isRunning, isPaused, pausesCount, elapsedTimeInSeconds} = this.state;
         const totalTimeInSeconds = 25;
         const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
         const minutesLeft = Math.floor(timeLeftInSeconds/60);
         const secondsLeft = Math.floor(timeLeftInSeconds%60);
         const progressInPercent = (elapsedTimeInSeconds / totalTimeInSeconds) * 100.0;
+
         return ( 
             <section className="timebox">
                 <h2 className="timebox__heading">Co robię</h2>
                 <Clock minutes={minutesLeft} seconds={secondsLeft}/>
-                <ProgressBar percent={progressInPercent} />
+                <ProgressBar paused={isPaused} percent={progressInPercent} />
                 <div className="timebox__button-wrapper">
-                    <button className="timebox__button" onClick={this.handleStart} disabled = {isRunning}>Start</button>
-                    <button className="timebox__button" onClick={this.handleStop} disabled={!isRunning}>Stop</button>
-                    <button className="timebox__button" onClick={this.handleTogglePause} disabled={!isRunning}>{isPaused ? "Wznów" : "Pauza"}</button>
+                    <Button className="timebox__button "
+                        onClick={this.handleStart} 
+                        disabled = {isRunning}
+                        lightpurple={isRunning}
+                    >Start</Button>
+                    <Button 
+                        className="timebox__button" 
+                        onClick={this.handleStop} 
+                        disabled={!isRunning}
+                        lightpurple={!isRunning}
+                    >Stop</Button>
+                    <Button 
+                        className="timebox__button" 
+                        onClick={this.handleTogglePause} 
+                        disabled={!isRunning}
+                        lightpurple={!isRunning}
+                        red={isPaused}>
+                    {isPaused ? "Wznów" : "Pauza"}
+                    </Button>
                 </div>
                 <span className="timebox__pauses">Liczba przerw: <span>{pausesCount}</span></span>
             </section>

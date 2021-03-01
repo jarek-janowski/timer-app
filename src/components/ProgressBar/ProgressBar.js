@@ -1,10 +1,24 @@
 import './ProgressBar.scss'
+import styled, { css } from 'styled-components'
 
-const ProgressBar = ({percent}) => {
+const Div = styled.div`
+    ${props =>
+        props.redBackground &&
+        css`
+            background: #EF233C;
+        `};
+    ${props =>
+        props.redBorder &&
+        css`
+            border-color: #EF233C;
+        `};
+`
+
+const ProgressBar = ({percent, paused}) => {
     return ( 
-        <div className="progress-bar">
-            <div className="progress-bar__inside" style={{width: `${percent}%`}}></div>
-        </div>
+        <Div redBorder={paused} className="progress-bar">
+            <Div redBackground={paused} className="progress-bar__inside" style={{width: `${percent}%`}}></Div>
+        </Div>
      );
 }
  
