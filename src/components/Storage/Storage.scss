@@ -1,0 +1,33 @@
+@import '../../variables.scss';
+
+.storage {
+    margin-top: 16px;
+    display: block;
+    width: 100%;
+    // margin: 0 auto;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    &__heading{
+        text-align: center;
+        color: $darkpurple;
+    }
+    &-list{
+        list-style: none;
+        color: $white;
+        font-size: 10px;
+        grid-column-start: 1;
+        grid-column-end: 7;
+        &--time{
+            grid-column-start: 7;
+            grid-column-end: 8;
+        }
+        &__heading{
+            
+        }
+    }
+    &-wrapper{
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        
+    }
+}

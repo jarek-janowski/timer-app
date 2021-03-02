@@ -19,6 +19,7 @@ class EditableTimebox extends Component {
         if(this.state.elapsedTimeInSeconds >= (this.state.totalTimeInMinutes*60) && this.state.elapsedTimeInSeconds>0) {
             this.stopTimer();
         }
+        
     }
   
     handleTitleChange = e =>{
@@ -53,7 +54,26 @@ class EditableTimebox extends Component {
             this.setState({
             isRunning: true,
         })
-        this.startTimer();}
+        
+        
+        function saveTitle(data){   
+            let a = [];
+            a = JSON.parse(localStorage.getItem('title')) || [];
+            a.push(data);
+            localStorage.setItem('title', JSON.stringify(a));
+        }
+
+        function saveTime(data){   
+            let a = [];
+            a = JSON.parse(localStorage.getItem('time')) || [];
+            a.push(data);
+            localStorage.setItem('time', JSON.stringify(a));
+        }
+
+        this.startTimer();
+        saveTitle(this.state.title);
+        saveTime(this.state.totalTimeInMinutes);
+        }
     }
 
     handleStop = () =>{
@@ -68,6 +88,7 @@ class EditableTimebox extends Component {
             validMinutes: false,
         })
         this.stopTimer();
+        
     }
 
     handleTogglePause = () => {
