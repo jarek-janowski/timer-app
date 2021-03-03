@@ -76,6 +76,25 @@ class EditableTimebox extends Component {
         }
     }
 
+    // const jsonParseTitle = JSON.parse(localStorage.getItem('title'))
+
+    // const jsonParseTime = JSON.parse(localStorage.getItem('time'))
+
+
+    // const titleUpdate = jsonParseTitle && jsonParseTitle.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
+    //     return(
+    //     <li key={id}>{item}</li>)
+    // })
+
+    // const timeUpdate = jsonParseTime && jsonParseTime.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
+    //     return(
+    //     <li key={id}>{item}</li>)
+    // })
+
+
+
+
+
     handleStop = () =>{
         this.setState({
             title: "",
@@ -130,6 +149,8 @@ class EditableTimebox extends Component {
         const minutesLeft = Math.floor(timeLeftInSeconds/60);
         const secondsLeft = Math.floor(timeLeftInSeconds%60);
         const progressInPercent = ((elapsedTimeInSeconds) / totalTimeInSeconds) * 100.0;
+        const jsonParseTitle = JSON.parse(localStorage.getItem('title'))
+        const jsonParseTime = JSON.parse(localStorage.getItem('time'))
         return ( 
             <>
                 {isRunning ? null : <TimeboxEditor 
@@ -141,6 +162,8 @@ class EditableTimebox extends Component {
                     isRunning={isRunning}
                     validationTitle={validTitle}
                     validationMinutes={validMinutes}
+                    jsonParseTitle={jsonParseTitle}
+                    jsonParseTime={jsonParseTime}
                 />}
                 {!isRunning ? null : <Timebox 
                     isRunning={isRunning}

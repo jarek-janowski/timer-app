@@ -18,7 +18,9 @@ const TimeboxEditor = ({
     startOnClick,
     isRunning,
     validationTitle,
-    validationMinutes
+    validationMinutes,
+    jsonParseTitle,
+    jsonParseTime,
 }) => {
     
     return ( 
@@ -52,7 +54,11 @@ const TimeboxEditor = ({
                 disabled={isRunning}
                 >Zacznij
             </button>
-            <Storage />
+            <Storage 
+                titleChange={titleChange}
+                jsonParseTitle={jsonParseTitle}
+                jsonParseTime={jsonParseTime}
+            />
         </section>
      );
 }
