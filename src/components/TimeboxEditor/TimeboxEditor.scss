@@ -2,20 +2,21 @@
 
 .timebox-editor{
     display: flex;
-    // display: flex;
     flex-direction: column;
     align-items: center;
-    // flex-wrap: wrap;
     padding: 16px 8px 0;
     &__input{
         display: block;
         margin-top: 8px;
         border-radius: 5px;
         border: 1px solid $darkpurple;
-        // border: none;
         background: $white;
         color: $darkpurple;
         padding: 6px;
+        outline: none;
+        &:focus{
+            border: 2px solid $darkpurple;
+        }
     }
     &__title{
         display: block;

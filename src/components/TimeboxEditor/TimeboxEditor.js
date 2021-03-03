@@ -33,7 +33,7 @@ const TimeboxEditor = ({
                     type="text"
                     onChange={titleChange}
                     maxLength="25"
-                    redBorder={validationTitle}
+                    redBorder={!validationTitle}
                 />
             </label>
             <label className="timebox-editor__title">
@@ -41,11 +41,9 @@ const TimeboxEditor = ({
                 <Input 
                     className="timebox-editor__input"
                     value={totalTimeInMinutes} 
-                    type="text"
-                    pattern="\d*"
+                    type="number"
                     onChange={totalTimeInMinutesChange}
-                    maxLength="3"
-                    redBorder={validationMinutes} 
+                    redBorder={!validationMinutes} 
                     />
             </label>
             <button 

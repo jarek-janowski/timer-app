@@ -11,15 +11,15 @@ class EditableTimebox extends Component {
         isPaused: false,
         pausesCount: 0,
         elapsedTimeInSeconds: 0,
-        validTitle: false,
-        validMinutes: false,
+        validTitle: true,
+        validMinutes: true,
      }
 
     componentDidUpdate(){
-        if(this.state.elapsedTimeInSeconds >= (this.state.totalTimeInMinutes*60) && this.state.elapsedTimeInSeconds>0) {
+        const {elapsedTimeInSeconds, totalTimeInMinutes} = this.state;
+        if(elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0) {
             this.stopTimer();
         }
-        
     }
   
     handleTitleChange = e =>{
@@ -34,66 +34,36 @@ class EditableTimebox extends Component {
     }
 
     handleStart = () =>{
-        if (this.state.title.length < 1 && this.state.totalTimeInMinutes.length < 1){
-            alert('Uzupełnij pola')
-            this.setState({
-                validTitle: true,
-                validMinutes: true
-            })
-        }else if(this.state.title.length > 1 && this.state.totalTimeInMinutes.length < 1){
-            alert('Uzupełnij pole z minutami')
+        const {title, totalTimeInMinutes} = this.state;
+        if (title.length < 1 && totalTimeInMinutes.length < 1){
+            alert('Uzupełnij pola');
             this.setState({
                 validTitle: false,
-                validMinutes: true
-            })}else if(this.state.title.length < 1 && this.state.totalTimeInMinutes.length > 1){
-                alert('Uzupełnij pole z celem')
+                validMinutes: false
+            })
+        }else if(title.length > 1 && totalTimeInMinutes.length < 1){
+            alert('Uzupełnij pole z minutami');
             this.setState({
                 validTitle: true,
                 validMinutes: false
-            })}else{
+            })
+        }else if(title.length < 1 && totalTimeInMinutes.length >= 1){
+            alert('Uzupełnij pole z celem');
+            this.setState({
+                validTitle: false,
+                validMinutes: true
+            })
+        }
+        else if(title.length > 1 && totalTimeInMinutes >= 1){
+            const sliced = (totalTimeInMinutes.slice(0, 3));
             this.setState({
             isRunning: true,
+            totalTimeInMinutes: sliced
         })
-        
-        
-        function saveTitle(data){   
-            let a = [];
-            a = JSON.parse(localStorage.getItem('title')) || [];
-            a.push(data);
-            localStorage.setItem('title', JSON.stringify(a));
-        }
-
-        function saveTime(data){   
-            let a = [];
-            a = JSON.parse(localStorage.getItem('time')) || [];
-            a.push(data);
-            localStorage.setItem('time', JSON.stringify(a));
-        }
-
         this.startTimer();
-        saveTitle(this.state.title);
-        saveTime(this.state.totalTimeInMinutes);
+        this.saveInLocalStorage(title, totalTimeInMinutes);
         }
     }
-
-    // const jsonParseTitle = JSON.parse(localStorage.getItem('title'))
-
-    // const jsonParseTime = JSON.parse(localStorage.getItem('time'))
-
-
-    // const titleUpdate = jsonParseTitle && jsonParseTitle.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
-    //     return(
-    //     <li key={id}>{item}</li>)
-    // })
-
-    // const timeUpdate = jsonParseTime && jsonParseTime.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
-    //     return(
-    //     <li key={id}>{item}</li>)
-    // })
-
-
-
-
 
     handleStop = () =>{
         this.setState({
@@ -103,8 +73,8 @@ class EditableTimebox extends Component {
             isPaused: false,
             pausesCount: 0,
             elapsedTimeInSeconds: 0,
-            validTitle: false,
-            validMinutes: false,
+            validTitle: true,
+            validMinutes: true,
         })
         this.stopTimer();
         
@@ -137,9 +107,20 @@ class EditableTimebox extends Component {
                 100
             );
     }
-    
+ 
     stopTimer = () => {
         window.clearInterval(this.intervalID);
+    }
+
+    saveInLocalStorage = (title, time) =>{   
+        let arrayTitle = [];
+        let arrayTime = [];
+        arrayTitle = JSON.parse(localStorage.getItem('title')) || [];
+        arrayTime = JSON.parse(localStorage.getItem('time')) || [];
+        arrayTitle.push(title);
+        arrayTime.push(time);
+        localStorage.setItem('title', JSON.stringify(arrayTitle));
+        localStorage.setItem('time', JSON.stringify(arrayTime));
     }
 
     render() { 
@@ -177,7 +158,6 @@ class EditableTimebox extends Component {
                     progressInPercent ={progressInPercent}
                     stop = {this.handleStop}
                     pause = {this.handleTogglePause}
-                    
                 />}
             </>
          );

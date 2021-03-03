@@ -21,12 +21,10 @@
           }     
     }
     &-list{
-        padding: 0;
+        padding: 0 8px 0 0;
         list-style: none;
         color: $white;
         font-size: 10px;
-        grid-column-start: 1;
-        grid-column-end: 7;
         line-height: 2;  
         @media (min-width: 360px){
             font-size: 12px;
@@ -45,21 +43,10 @@
             }
               
         }  
-        &--time{
-            grid-column-start: 8;
-            grid-column-end: 8;
-            & > li {
-                border-left: 1px solid $white;
-                padding-left: 8px;
-            }
-            & > h3 {
-                text-align: end;
-            }
-        }
     }
     &-wrapper{
-        
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
+        display: flex;
+        justify-content: space-around;
+       
     }
 }

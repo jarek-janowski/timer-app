@@ -1,15 +1,16 @@
 import './TaskHistory.scss'
 
-
 const Storage = ({jsonParseTitle, jsonParseTime}) => {
+
     const titleUpdate = jsonParseTitle && jsonParseTitle.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
         return(
         <li key={id}>{item}</li>)
     })
 
     const timeUpdate = jsonParseTime && jsonParseTime.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
+        const slicedItem = item.slice(0,3)
         return(
-        <li key={id}>{item < 1 ? `<1` : item}min</li>)
+        <li key={id}>{slicedItem < 1 ? `<1` : slicedItem}min</li>)
     })
         return ( 
             <section className="history">
@@ -19,7 +20,7 @@ const Storage = ({jsonParseTitle, jsonParseTime}) => {
                         <h3 className="history-list__heading">Nazwa</h3>
                         {titleUpdate}
                     </ul>
-                    <ul className="history-list history-list--time">
+                    <ul className="history-list">
                         <h3 className="history-list__heading">Czas</h3>
                         {timeUpdate}
                     </ul>
