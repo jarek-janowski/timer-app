@@ -19,14 +19,20 @@
         // font-size: 18px;
     }
     &__button-wrapper{
-        margin: 16px 0 24px;
+        margin: 24px 0 24px;
         display: flex;
         justify-content: space-evenly;
+        @media(min-width: 360px){
+            margin-top: 48px;
+        }
     }
     &__pauses {
         display: block;
         text-align: center;
         color: $white;
+        @media(min-width: 360px){
+            margin-top: 32px;
+        }
         & > span {
             color: $red2;
             font-weight: 700;

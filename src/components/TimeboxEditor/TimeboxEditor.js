@@ -1,6 +1,6 @@
 import './TimeboxEditor.scss'
 import styled, { css } from 'styled-components'
-import Storage from '../Storage/Storage'
+import TaskHistory from '../TaskHistory/TaskHistory'
 
 const Input = styled.input`
 ${props =>
@@ -32,7 +32,7 @@ const TimeboxEditor = ({
                     value={title}
                     type="text"
                     onChange={titleChange}
-                    maxLength="30"
+                    maxLength="25"
                     redBorder={validationTitle}
                 />
             </label>
@@ -54,7 +54,7 @@ const TimeboxEditor = ({
                 disabled={isRunning}
                 >Zacznij
             </button>
-            <Storage 
+            <TaskHistory 
                 titleChange={titleChange}
                 jsonParseTitle={jsonParseTitle}
                 jsonParseTime={jsonParseTime}

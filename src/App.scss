@@ -2,14 +2,30 @@
 
 .app {
   width: 90vw;
-  min-height: 90%;
+  min-height: 90vh;
   background: $lightpurple;
   border-radius: 8px;
-  // padding: 16px
+  @media (min-width: 768px){
+    width: 450px;
+    min-height: 850px;
+  }   
 }
 
 h1{
+  margin-top: 0;
   color: $darkpurple;
   text-align: center;
   padding-top: 16px;
+  @media (min-width: 360px){
+    font-size: 36px;
+    padding: 32px 0 0 0;
+  }  
+  @media (min-width: 400px){
+    font-size: 40px;
+    padding: 32px 0 0 0;
+  }  
+  @media (min-height: 800px){
+    font-size: 40px;
+    padding: 64px 0 0 0;
+  }  
 }

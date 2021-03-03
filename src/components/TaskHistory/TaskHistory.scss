@@ -1,0 +1,65 @@
+@import '../../variables.scss';
+
+.history {
+    margin-top: 16px;
+    display: block;
+    width: 90%;
+    &__heading{
+        text-align: center;
+        color: $darkpurple;
+        margin-bottom: 0;
+        font-size: 20px;
+        @media (min-width: 360px){
+            margin: 24px 0;
+        }
+        @media (min-width: 400px){
+            font-size: 28px;
+            margin: 32px 0;
+        }
+        @media (min-height: 800px){
+            margin-top: 32px;
+          }     
+    }
+    &-list{
+        padding: 0;
+        list-style: none;
+        color: $white;
+        font-size: 10px;
+        grid-column-start: 1;
+        grid-column-end: 7;
+        line-height: 2;  
+        @media (min-width: 360px){
+            font-size: 12px;
+            
+        }
+        @media (min-width: 400px){
+            line-height: 2.5;
+            font-size: 13px;
+        }  
+        @media (min-height: 800px){
+            line-height: 3;
+          } 
+        &__heading{
+            @media (min-width: 400px){
+                font-size: 16px;
+            }
+              
+        }  
+        &--time{
+            grid-column-start: 8;
+            grid-column-end: 8;
+            & > li {
+                border-left: 1px solid $white;
+                padding-left: 8px;
+            }
+            & > h3 {
+                text-align: end;
+            }
+        }
+    }
+    &-wrapper{
+        
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
