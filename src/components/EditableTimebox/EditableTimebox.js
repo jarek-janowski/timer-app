@@ -55,7 +55,7 @@ class EditableTimebox extends Component {
                 validMinutes: true
             })
         }
-        else if(title.length > 1 && totalTimeInMinutes >= 1){
+        else if(title.length >= 1 && totalTimeInMinutes >= 1){
             const sliced = (totalTimeInMinutes.slice(0, 3));
             this.setState({
             isRunning: true,
