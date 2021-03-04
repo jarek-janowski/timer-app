@@ -21,6 +21,7 @@ const TimeboxEditor = ({
     validationMinutes,
     jsonParseTitle,
     jsonParseTime,
+    clearLocalStorage
 }) => {
     
     return ( 
@@ -56,6 +57,7 @@ const TimeboxEditor = ({
                 titleChange={titleChange}
                 jsonParseTitle={jsonParseTitle}
                 jsonParseTime={jsonParseTime}
+                clearLocalStorage={clearLocalStorage}
             />
         </section>
      );

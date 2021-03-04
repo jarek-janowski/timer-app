@@ -15,7 +15,9 @@
         padding: 6px;
         outline: none;
         &:focus{
-            border: 2px solid $darkpurple;
+            border-color: $white;
+            background-color: $darkpurple;
+            color: $white;
         }
     }
     &__title{

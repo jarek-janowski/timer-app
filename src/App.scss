@@ -9,7 +9,12 @@
   border-radius: 8px;
   @media (min-width: 768px){
     width: 450px;
-  }    
+    min-height: 70vh;
+  }
+  @media (min-width: 1024px) and (min-height: 1366px){
+    
+    min-height: 50vh;
+  }       
 }
 
 h1{

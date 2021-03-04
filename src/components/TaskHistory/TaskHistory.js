@@ -1,6 +1,6 @@
 import './TaskHistory.scss'
 
-const Storage = ({jsonParseTitle, jsonParseTime}) => {
+const Storage = ({jsonParseTitle, jsonParseTime, clearLocalStorage}) => {
 
     const titleUpdate = jsonParseTitle && jsonParseTitle.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
         return(
@@ -21,7 +21,10 @@ const Storage = ({jsonParseTitle, jsonParseTime}) => {
         return ( 
             <section className="history">
                 <h2 className="history__heading">Ostatnie trzy zadania</h2>
-                <div className="history-wrapper">
+                
+                {!jsonParseTitle 
+                ? <p className="special">Jeszcze nic nie zrobiłeś. Wpisz swoje pierwsze zadanie!</p> 
+                : <><div className="history-wrapper">
                     <ul className="history-list">
                         <h3 className="history-list__heading">Nazwa</h3>
                         {titleUpdate}
@@ -31,6 +34,7 @@ const Storage = ({jsonParseTitle, jsonParseTime}) => {
                         {timeUpdate}
                     </ul>
                 </div>
+                <button onClick={clearLocalStorage} className="history__clear-button">Wyczyść historię</button></>}
             </section>
          );
 }

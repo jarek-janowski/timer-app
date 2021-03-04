@@ -13,6 +13,7 @@ class EditableTimebox extends Component {
         elapsedTimeInSeconds: 0,
         validTitle: true,
         validMinutes: true,
+        clear: false
      }
 
     componentDidUpdate(){
@@ -123,6 +124,13 @@ class EditableTimebox extends Component {
         localStorage.setItem('time', JSON.stringify(arrayTime));
     }
 
+    clearLocalStorage = () => {
+        this.setState({
+            clear: !this.state.clear
+        })
+        localStorage.clear()
+    }
+
     render() { 
         const {isRunning, isPaused, pausesCount, elapsedTimeInSeconds, title, totalTimeInMinutes, validTitle, validMinutes} = this.state;
         const totalTimeInSeconds = totalTimeInMinutes * 60;
@@ -145,6 +153,7 @@ class EditableTimebox extends Component {
                     validationMinutes={validMinutes}
                     jsonParseTitle={jsonParseTitle}
                     jsonParseTime={jsonParseTime}
+                    clearLocalStorage={this.clearLocalStorage}
                 />}
                 {!isRunning ? null : <Timebox 
                     isRunning={isRunning}
