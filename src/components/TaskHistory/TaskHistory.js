@@ -9,6 +9,12 @@ const Storage = ({jsonParseTitle, jsonParseTime}) => {
 
     const timeUpdate = jsonParseTime && jsonParseTime.reduce((acc, b) => ([b, ...acc]), []).slice(0, 3).map((item, id)=>{
         const slicedItem = item.slice(0,3)
+            if(slicedItem > 59) {
+                const hours = (slicedItem/60).toFixed(0)
+                const minutes = slicedItem%60
+                return(<li key={id}>{hours}g {minutes}min</li>)
+            }
+        
         return(
         <li key={id}>{slicedItem < 1 ? `<1` : slicedItem}min</li>)
     })
