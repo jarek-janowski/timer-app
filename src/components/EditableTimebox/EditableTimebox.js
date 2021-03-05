@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timebox from '../Timebox/Timebox'
 import TimeboxEditor from '../TimeboxEditor/TimeboxEditor'
+import Alarm from '../../audio/alarm.mp3'
 
 class EditableTimebox extends Component {
 
@@ -17,9 +18,11 @@ class EditableTimebox extends Component {
      }
 
     componentDidUpdate(){
+        const alarm = new Audio(Alarm);
         const {elapsedTimeInSeconds, totalTimeInMinutes} = this.state;
         if(elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0) {
             this.stopTimer();
+            alarm.play()
         }
     }
   
@@ -55,7 +58,7 @@ class EditableTimebox extends Component {
                 validMinutes: true
             })
         }
-        else if(title.length >= 1 && totalTimeInMinutes >= 1){
+        else if(title.length >= 1 && totalTimeInMinutes > 0){
             const sliced = (totalTimeInMinutes.slice(0, 3));
             this.setState({
             isRunning: true,
@@ -137,6 +140,7 @@ class EditableTimebox extends Component {
         const timeLeftInSeconds = totalTimeInSeconds - Math.floor(elapsedTimeInSeconds);
         const minutesLeft = Math.floor(timeLeftInSeconds/60);
         const secondsLeft = Math.floor(timeLeftInSeconds%60);
+        const hoursLeft = Math.floor(minutesLeft/60);
         const progressInPercent = ((elapsedTimeInSeconds) / totalTimeInSeconds) * 100.0;
         const jsonParseTitle = JSON.parse(localStorage.getItem('title'))
         const jsonParseTime = JSON.parse(localStorage.getItem('time'))
@@ -164,6 +168,7 @@ class EditableTimebox extends Component {
                     totalTimeInMinutes={totalTimeInMinutes}
                     minutesLeft ={minutesLeft}
                     secondsLeft = {secondsLeft}
+                    hoursLeft = {hoursLeft}
                     progressInPercent ={progressInPercent}
                     stop = {this.handleStop}
                     pause = {this.handleTogglePause}

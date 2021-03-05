@@ -19,19 +19,24 @@ const P = styled.p`
             50% { font-size: 36px; }
         }
     `};
-    `     
-const Clock = ({minutes, seconds, paused}) => {
-        const hours = Math.floor(minutes/60);
-        const hoursLeft = hours > 9 ? hours : `0${hours}`;
-        const minutesFormat = Math.floor(minutes%60)
-        const minutesLeft = minutesFormat > 9 ? minutesFormat : `0${minutesFormat}`
-        const secondsLeft = seconds > 9 ? seconds: `0${seconds}`
+    `  
+// const Alarm = () => {
+//     <div>
+//         Koniec!
+//     </div>
+// }
+    
+const Clock = ({hoursLeft, minutesLeft, secondsLeft, paused}) => {
+        const hours = hoursLeft > 9 ? hoursLeft : `0${hoursLeft}`;
+        // const minutesFormat = Math.floor(minutes%60)
+        const minutes = minutesLeft > 9 ? minutesLeft : `0${minutesLeft}`
+        const seconds = secondsLeft > 9 ? secondsLeft: `0${secondsLeft}`
     return ( 
         <P
         $blink={paused}  
-        $scale={minutes===0 && seconds < 30 && seconds !== 0 && !paused} 
+        $scale={minutesLeft===0 && secondsLeft < 30 && secondsLeft !== 0 && !paused} 
         className="clock">
-            {!hoursLeft && !seconds && !minutes ? "Koniec" : `${hoursLeft}:${minutesLeft}:${secondsLeft}`}
+            {!hoursLeft && !secondsLeft && !minutesLeft ? "Koniec" : `${hours}:${minutes}:${seconds}`}
         </P>
         );
 }

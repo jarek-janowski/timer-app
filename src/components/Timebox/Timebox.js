@@ -16,7 +16,6 @@ const Button = styled.button`
             `};
             `
 
-
 const Timebox = ({
     isRunning, 
     isPaused, 
@@ -24,6 +23,7 @@ const Timebox = ({
     title, 
     minutesLeft,
     secondsLeft,
+    hoursLeft,
     progressInPercent,
     stop,
     pause,
@@ -31,7 +31,7 @@ const Timebox = ({
         return ( 
             <section className="timebox">
                 <h2 className="timebox__heading">{title}</h2>
-                <Clock blur={!isPaused} paused={isPaused} minutes={minutesLeft} seconds={secondsLeft}/>
+                <Clock blur={!isPaused} paused={isPaused} minutesLeft={minutesLeft} secondsLeft={secondsLeft} hoursLeft={hoursLeft}/>
                 <ProgressBar minutesLeft={minutesLeft} secondsLeft={secondsLeft} paused={isPaused} percent={progressInPercent} />
                 <div className="timebox__button-wrapper">
                     <Button 
