@@ -21,12 +21,22 @@ class EditableTimebox extends Component {
      }
 
     componentDidUpdate(){
-        // const alarm = new Audio(Alarm);
         const {elapsedTimeInSeconds, totalTimeInMinutes} = this.state;
         if(elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0) {
             this.stopTimer();
             alarm.play()
         }
+    }
+
+    handleExtendBy5Min = () =>{
+        this.setState({
+            elapsedTimeInSeconds: 0,
+            totalTimeInMinutes: 5,
+            // pausesCount: 0
+        })
+        alarm.pause();
+        alarm.currentTime = 0;
+        this.startTimer();
     }
   
     handleTitleChange = e =>{
@@ -178,7 +188,13 @@ class EditableTimebox extends Component {
                     pause = {this.handleTogglePause}
                 />}
                 {elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0 
-                ? <EndOfTime stop={this.handleStop} title={title} totalTimeInMinutes={totalTimeInMinutes}/> 
+                ? <EndOfTime 
+                    stop={this.handleStop} 
+                    title={title} 
+                    totalTimeInMinutes={totalTimeInMinutes}
+                    pausesCount={pausesCount}
+                    extend={this.handleExtendBy5Min}
+                /> 
                 : null}
             </>
          );

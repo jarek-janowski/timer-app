@@ -10,10 +10,8 @@
     justify-content: space-evenly;
     align-items: center;
     background: $darkpurple;
-    // border-radius: 8px;
     top: 0;
     left: 0;
-    // transform: translateX(-50%);
     color: white;
     z-index: 5
 }
@@ -22,11 +20,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid $white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    min-width: 65%;
     &__title{
         font-size: 24px;
     }
     &__time{
         font-size: 12px;
+    }
+    &__pauses{
+        font-size: 14px;
     }
 }
 
@@ -40,10 +45,12 @@
     }
     &__button{
         display: block;
-        background: $red2;
+        background: $red1;
         border: 1px solid $white;
-        border-radius: 5px;
+        border-radius: 16px;
         color: $white;
-        padding: 6px 64px;
+        padding: 6px 16px;
+        width: 150px;
+        margin-top: 16px;
     }
 }

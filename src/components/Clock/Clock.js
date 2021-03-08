@@ -28,8 +28,8 @@ const P = styled.p`
     
 const Clock = ({hoursLeft, minutesLeft, secondsLeft, paused}) => {
         const hours = hoursLeft > 9 ? hoursLeft : `0${hoursLeft}`;
-        // const minutesFormat = Math.floor(minutes%60)
-        const minutes = minutesLeft > 9 ? minutesLeft : `0${minutesLeft}`
+        const minutesFormat = Math.floor(minutesLeft%60)
+        const minutes = minutesFormat > 9 ? minutesFormat : `0${minutesFormat}`
         const seconds = secondsLeft > 9 ? secondsLeft: `0${secondsLeft}`
     return ( 
         <P
