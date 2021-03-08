@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Timebox from '../Timebox/Timebox'
 import TimeboxEditor from '../TimeboxEditor/TimeboxEditor'
 import Alarm from '../../audio/alarm.mp3'
+import EndOfTime from '../EndOfTime/EndOfTime'
 
+const alarm = new Audio(Alarm);
+alarm.loop = true
 class EditableTimebox extends Component {
 
     state = { 
@@ -18,7 +21,7 @@ class EditableTimebox extends Component {
      }
 
     componentDidUpdate(){
-        const alarm = new Audio(Alarm);
+        // const alarm = new Audio(Alarm);
         const {elapsedTimeInSeconds, totalTimeInMinutes} = this.state;
         if(elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0) {
             this.stopTimer();
@@ -81,7 +84,8 @@ class EditableTimebox extends Component {
             validMinutes: true,
         })
         this.stopTimer();
-        
+        alarm.pause();
+        alarm.currentTime = 0;
     }
 
     handleTogglePause = () => {
@@ -173,6 +177,9 @@ class EditableTimebox extends Component {
                     stop = {this.handleStop}
                     pause = {this.handleTogglePause}
                 />}
+                {elapsedTimeInSeconds >= (totalTimeInMinutes*60) && elapsedTimeInSeconds>0 
+                ? <EndOfTime stop={this.handleStop} title={title} totalTimeInMinutes={totalTimeInMinutes}/> 
+                : null}
             </>
          );
     }
