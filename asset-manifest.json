@@ -1,15 +1,13 @@
 {
   "files": {
     "main.css": "/timer-app/static/css/main.267151c2.chunk.css",
-    "main.js": "/timer-app/static/js/main.5d1f5e6a.chunk.js",
-    "main.js.map": "/timer-app/static/js/main.5d1f5e6a.chunk.js.map",
+    "main.js": "/timer-app/static/js/main.eac2555c.chunk.js",
+    "main.js.map": "/timer-app/static/js/main.eac2555c.chunk.js.map",
     "runtime-main.js": "/timer-app/static/js/runtime-main.b21a3165.js",
     "runtime-main.js.map": "/timer-app/static/js/runtime-main.b21a3165.js.map",
     "static/js/2.c93fc29d.chunk.js": "/timer-app/static/js/2.c93fc29d.chunk.js",
     "static/js/2.c93fc29d.chunk.js.map": "/timer-app/static/js/2.c93fc29d.chunk.js.map",
     "index.html": "/timer-app/index.html",
-    "service-worker.js": "/timer-app/service-worker.js",
-    "service-worker.js.map": "/timer-app/service-worker.js.map",
     "static/css/main.267151c2.chunk.css.map": "/timer-app/static/css/main.267151c2.chunk.css.map",
     "static/js/2.c93fc29d.chunk.js.LICENSE.txt": "/timer-app/static/js/2.c93fc29d.chunk.js.LICENSE.txt",
     "static/media/alarm.7059255a.mp3": "/timer-app/static/media/alarm.7059255a.mp3"
@@ -18,6 +16,6 @@
     "static/js/runtime-main.b21a3165.js",
     "static/js/2.c93fc29d.chunk.js",
     "static/css/main.267151c2.chunk.css",
-    "static/js/main.5d1f5e6a.chunk.js"
+    "static/js/main.eac2555c.chunk.js"
   ]
 }
